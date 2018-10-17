@@ -49,10 +49,10 @@
 <meta name="description" content="node.js应用由以下三部分组成： 1.引入 required 模块：我们可以使用 require 指令来载入 Node.js 模块。 2.创建服务器：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。 3.接收请求与响应请求 服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于node.js的webServer的学习">
-<meta property="og:url" content="http://yoursite.com/2016/01/27/基于node-js的webServer的学习/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="https://github.com/jinycheerup/jinycheerup.github.io/2016/01/27/基于node-js的webServer的学习/index.html">
+<meta property="og:site_name" content="jiny&#39;s blog">
 <meta property="og:description" content="node.js应用由以下三部分组成： 1.引入 required 模块：我们可以使用 require 指令来载入 Node.js 模块。 2.创建服务器：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。 3.接收请求与响应请求 服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2015/09/event_loop.jpg">
 <meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2015/09/web_architecture.jpg">
 <meta property="og:updated_time" content="2016-01-27T09:14:38.000Z">
@@ -71,10 +71,10 @@
   };
 </script>
 
-  <title> 基于node.js的webServer的学习 | Hexo </title>
+  <title> 基于node.js的webServer的学习 | jiny's blog </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   <!--[if lte IE 8]>
   <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
@@ -101,11 +101,11 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Hexo</span>
+      <span class="site-title">jiny's blog</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle"></p>
+  <p class="site-subtitle">all about the hello world</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -128,7 +128,7 @@
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
@@ -138,7 +138,7 @@
             
               <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
             
-            Categories
+            分类
           </a>
         </li>
       
@@ -148,7 +148,7 @@
             
               <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
@@ -158,7 +158,7 @@
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            Archives
+            时间轴
           </a>
         </li>
       
@@ -168,7 +168,7 @@
             
               <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
             
-            About
+            关于我
           </a>
         </li>
       
@@ -218,7 +218,7 @@
 
         <div class="post-meta">
           <span class="post-time">
-            Posted on
+            发表于
             <time itemprop="dateCreated" datetime="2016-01-27T14:54:44+08:00" content="2016-01-27">
               2016-01-27
             </time>
@@ -499,39 +499,39 @@ var server = app.listen(8081, function () {
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table Of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            站点概览
           </li>
         </ul>
       
 
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="John Doe" itemprop="image"/>
-          <p class="site-author-name" itemprop="name">John Doe</p>
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="jiny" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">jiny</p>
         </div>
         <p class="site-description motion-element" itemprop="description"></p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">9</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
               <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">categories</span>
+              <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
               <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">tags</span>
+              <span class="site-state-item-name">标签</span>
               </a>
           </div>
 
@@ -587,15 +587,15 @@ var server = app.listen(8081, function () {
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">jiny</span>
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Mist
   </a>
