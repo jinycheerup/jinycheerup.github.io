@@ -1,0 +1,813 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="node.js应用由以下三部分组成： 1.引入 required 模块：我们可以使用 require 指令来载入 Node.js 模块。 2.创建服务器：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。 3.接收请求与响应请求 服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于node.js的webServer的学习">
+<meta property="og:url" content="http://yoursite.com/2016/01/27/基于node-js的webServer的学习/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="node.js应用由以下三部分组成： 1.引入 required 模块：我们可以使用 require 指令来载入 Node.js 模块。 2.创建服务器：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。 3.接收请求与响应请求 服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2015/09/event_loop.jpg">
+<meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2015/09/web_architecture.jpg">
+<meta property="og:updated_time" content="2016-01-27T09:14:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于node.js的webServer的学习">
+<meta name="twitter:description" content="node.js应用由以下三部分组成： 1.引入 required 模块：我们可以使用 require 指令来载入 Node.js 模块。 2.创建服务器：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。 3.接收请求与响应请求 服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。">
+<meta name="twitter:image" content="http://www.runoob.com/wp-content/uploads/2015/09/event_loop.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide',
+    motion: true
+  };
+</script>
+
+  <title> 基于node.js的webServer的学习 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                基于node.js的webServer的学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            Posted on
+            <time itemprop="dateCreated" datetime="2016-01-27T14:54:44+08:00" content="2016-01-27">
+              2016-01-27
+            </time>
+          </span>
+          <span class="post-time">
+            | 修改于
+            <time itemprop="dateCreated" datetime="2016-01-27T17:14:38+08:00" content="2016-01-27">
+              2016-01-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>node.js应用由以下三部分组成：</p>
+<p>1.引入 <strong>required</strong> 模块：我们可以使用 <strong>require</strong> 指令来载入 Node.js 模块。</p>
+<p>2.<strong>创建服务器</strong>：服务器可以监听客户端的请求，类似于 Apache 、Nginx 等 HTTP 服务器。</p>
+<p>3.<strong>接收请求与响应请求</strong> 服务器很容易创建，客户端可以使用浏览器或终端发送 HTTP 请求，服务器接收请求后返回响应数据。<br><a id="more"></a><br>如：</p>
+<pre><code>var http = require(&apos;http&apos;);
+
+http.createServer(function (request, response) {
+
+    // 发送 HTTP 头部 
+    // HTTP 状态值: 200 : OK
+    // 内容类型: text/plain
+    response.writeHead(200, {&apos;Content-Type&apos;: &apos;text/plain&apos;});
+
+    // 发送响应数据 &quot;Hello World&quot;
+    response.end(&apos;Hello World\n&apos;);
+}).listen(8888);
+
+// 终端打印如下信息
+console.log(&apos;Server running at http://127.0.0.1:8888/&apos;);
+</code></pre><p>以上代码我们完成了一个可以工作的 HTTP 服务器。</p>
+<p>使用 node 命令执行以上的代码：</p>
+<pre><code>node server.js
+Server running at http://127.0.0.1:8888/
+</code></pre><p>接下来打开浏览器：</p>
+<pre><code>127.0.0.1：8888
+</code></pre><p>即可看到响应：Hello World</p>
+<h3 id="读写文件"><a href="#读写文件" class="headerlink" title="读写文件"></a>读写文件</h3><p>在 Node.js 中，Buffer 类是随 Node 内核一起发布的核心库。Buffer 库为 Node.js 带来了一种存储原始数据的方法，可以让 Node.js 处理二进制数据，每当需要在 Node.js 中处理I/O操作中移动的数据时，就有可能使用 Buffer 库。原始数据存储在 Buffer 类的实例中。一个 Buffer 类似于一个整数数组，但它对应于 V8 堆内存之外的一块原始内存。</p>
+<h4 id="写入流"><a href="#写入流" class="headerlink" title="写入流"></a>写入流</h4><pre><code>var fs = require(&quot;fs&quot;);
+var data = &apos;菜鸟教程官网地址：www.runoob.com&apos;;
+
+// 创建一个可以写入的流，写入到文件 output.txt 中
+var writerStream = fs.createWriteStream(&apos;output.txt&apos;);
+
+// 使用 utf8 编码写入数据
+writerStream.write(data,&apos;UTF8&apos;);
+
+// 标记文件末尾
+writerStream.end();
+
+// 处理流事件 --&gt; data, end, and error
+writerStream.on(&apos;finish&apos;, function() {
+    console.log(&quot;写入完成。&quot;);
+});
+
+writerStream.on(&apos;error&apos;, function(err){
+   console.log(err.stack);
+});
+
+console.log(&quot;程序执行完毕&quot;);
+</code></pre><h4 id="读取流"><a href="#读取流" class="headerlink" title="读取流"></a>读取流</h4><pre><code>var fs = require(&quot;fs&quot;);
+var data = &apos;&apos;;
+
+// 创建可读流
+var readerStream = fs.createReadStream(&apos;input.txt&apos;);
+
+// 设置编码为 utf8。
+readerStream.setEncoding(&apos;UTF8&apos;);
+
+// 处理流事件 --&gt; data, end, and error
+readerStream.on(&apos;data&apos;, function(chunk) {
+   data += chunk;
+});
+
+readerStream.on(&apos;end&apos;,function(){
+   console.log(data);
+});
+
+readerStream.on(&apos;error&apos;, function(err){
+   console.log(err.stack);
+});
+
+console.log(&quot;程序执行完毕&quot;);
+</code></pre><h4 id="链式流"><a href="#链式流" class="headerlink" title="链式流"></a>链式流</h4><h5 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h5><pre><code>var fs = require(&quot;fs&quot;);
+var zlib = require(&apos;zlib&apos;);
+
+// 压缩 input.txt 文件为 input.txt.gz
+
+fs.createReadStream(&apos;input.txt&apos;).pipe(zlib.createGzip()).pipe(fs.createWriteStream(&apos;input.txt.gz&apos;));
+
+console.log(&quot;文件压缩完成。&quot;);
+</code></pre><h5 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h5><pre><code>var fs = require(&quot;fs&quot;);
+var zlib = require(&apos;zlib&apos;);
+
+// 解压 input.txt.gz 文件为 input.txt
+fs.createReadStream(&apos;input.txt.gz&apos;)
+  .pipe(zlib.createGunzip())
+  .pipe(fs.createWriteStream(&apos;input.txt&apos;));
+
+console.log(&quot;文件解压完成。&quot;);
+</code></pre><h3 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h3><p>Node.js 使用事件驱动模型，当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。</p>
+<p>当这个请求完成，它被放回处理队列，当到达队列开头，这个结果被返回给用户。</p>
+<p>这个模型非常高效可扩展性非常强，因为webserver一直接受请求而不等待任何读写操作。（这也被称之为非阻塞式IO或者事件驱动IO）</p>
+<p>在事件驱动模型中，会生成一个主循环来监听事件，当检测到事件时触发回调函数。</p>
+<p><img src="http://www.runoob.com/wp-content/uploads/2015/09/event_loop.jpg" alt="事件循环"></p>
+<p>Node.js 有多个内置的事件，我们可以通过引入 events 模块，并通过实例化 EventEmitter 类来绑定和监听事件，如下实例：</p>
+<pre><code>// 引入 events 模块
+var events = require(&apos;events&apos;);
+// 创建 eventEmitter 对象
+var eventEmitter = new events.EventEmitter();
+</code></pre><p>以下程序绑定事件处理程序：</p>
+<pre><code>// 绑定事件及事件的处理程序
+eventEmitter.on(&apos;eventName&apos;, eventHandler);
+</code></pre><p>我们可以通过程序触发事件：</p>
+<pre><code>// 触发事件
+eventEmitter.emit(&apos;eventName&apos;);
+</code></pre><p>大多数时候我们不会直接使用 EventEmitter，而是在对象中继承它。包括 fs、net、 http 在内的，只要是支持事件响应的核心模块都是 EventEmitter 的子类。</p>
+<p>为什么要这样做呢？原因有两点：</p>
+<p>首先，具有某个实体功能的对象实现事件符合语义， 事件的监听和发射应该是一个对象的方法。</p>
+<p>其次 JavaScript 的对象机制是基于原型的，支持 部分多重继承，继承 EventEmitter 不会打乱对象原有的继承关系。</p>
+<h3 id="什么是web服务器"><a href="#什么是web服务器" class="headerlink" title="什么是web服务器"></a>什么是web服务器</h3><p>Web服务器一般指网站服务器，是指驻留于因特网上某种类型计算机的程序，Web服务器的基本功能就是提供Web信息浏览服务。它只需支持HTTP协议、HTML文档格式及URL，与客户端的网络浏览器配合。</p>
+<p>大多数 web 服务器都支持服务端的脚本语言（php、python、ruby）等，并通过脚本语言从数据库获取数据，将结果返回给客户端浏览器。</p>
+<p>目前最主流的三个Web服务器是Apache、Nginx、IIS。<br><img src="http://www.runoob.com/wp-content/uploads/2015/09/web_architecture.jpg" alt="web架构图"></p>
+<p>.Client - 客户端，一般指浏览器，浏览器可以通过 HTTP 协议向服务器请求数据。</p>
+<p>.Server - 服务端，一般指 Web 服务器，可以接收客户端请求，并向客户端发送响应数据。</p>
+<p>.Business - 业务层， 通过 Web 服务器处理应用程序，如与数据库交互，逻辑运算，调用外部程序等。</p>
+<p>.Data - 数据层，一般由数据库组成。</p>
+<h4 id="express框架"><a href="#express框架" class="headerlink" title="express框架"></a>express框架</h4><pre><code>//express_demo.js 文件
+var express = require(&apos;express&apos;);
+var app = express();
+
+app.get(&apos;/&apos;, function (req, res) {
+   res.send(&apos;Hello World&apos;);
+})
+
+var server = app.listen(8081, function () {
+
+  var host = server.address().address
+  var port = server.address().port
+
+  console.log(&quot;应用实例，访问地址为 http://%s:%s&quot;, host, port)
+
+})
+</code></pre><h4 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h4><p>我们已经了解了 HTTP 请求的基本应用，而路由决定了由谁(指定脚本)去响应客户端请求。</p>
+<p>在HTTP请求中，我们可以通过路由提取出请求的URL以及GET/POST参数。</p>
+<p>接下来我们扩展 Hello World，添加一些功能来处理更多类型的 HTTP 请求。</p>
+<p>创建 express_demo2.js 文件，代码如下所示：</p>
+<pre><code>var express = require(&apos;express&apos;);
+var app = express();
+
+//  主页输出 &quot;Hello World&quot;
+app.get(&apos;/&apos;, function (req, res) {
+   console.log(&quot;主页 GET 请求&quot;);
+   res.send(&apos;Hello GET&apos;);
+})
+
+
+//  POST 请求
+app.post(&apos;/&apos;, function (req, res) {
+   console.log(&quot;主页 POST 请求&quot;);
+   res.send(&apos;Hello POST&apos;);
+})
+
+//  /del_user 页面响应
+app.delete(&apos;/del_user&apos;, function (req, res) {
+   console.log(&quot;/del_user 响应 DELETE 请求&quot;);
+   res.send(&apos;删除页面&apos;);
+})
+
+//  /list_user 页面 GET 请求
+app.get(&apos;/list_user&apos;, function (req, res) {
+   console.log(&quot;/list_user GET 请求&quot;);
+   res.send(&apos;用户列表页面&apos;);
+})
+
+// 对页面 abcd, abxcd, ab123cd, 等响应 GET 请求
+app.get(&apos;/ab*cd&apos;, function(req, res) {   
+   console.log(&quot;/ab*cd GET 请求&quot;);
+   res.send(&apos;正则匹配&apos;);
+})
+
+var server = app.listen(8081, function () {
+
+  var host = server.address().address
+  var port = server.address().port
+
+  console.log(&quot;应用实例，访问地址为 http://%s:%s&quot;, host, port)
+
+})
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/21/MKMapView的内存处理/" rel="next" title="MKMapView的内存处理">
+                <i class="fa fa-chevron-left"></i> MKMapView的内存处理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/22/最近的总结/" rel="prev" title="最近的总结">
+                最近的总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="John Doe" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">John Doe</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#读写文件"><span class="nav-number">1.</span> <span class="nav-text">读写文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#写入流"><span class="nav-number">1.1.</span> <span class="nav-text">写入流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取流"><span class="nav-number">1.2.</span> <span class="nav-text">读取流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链式流"><span class="nav-number">1.3.</span> <span class="nav-text">链式流</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#压缩文件"><span class="nav-number">1.3.1.</span> <span class="nav-text">压缩文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解压文件"><span class="nav-number">1.3.2.</span> <span class="nav-text">解压文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件循环"><span class="nav-number">2.</span> <span class="nav-text">事件循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是web服务器"><span class="nav-number">3.</span> <span class="nav-text">什么是web服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#express框架"><span class="nav-number">3.1.</span> <span class="nav-text">express框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由"><span class="nav-number">3.2.</span> <span class="nav-text">路由</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

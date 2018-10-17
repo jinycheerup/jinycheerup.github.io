@@ -1,0 +1,797 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="Hexo简介 使用的软硬件  Mac Pro    #软件的安装基本都是基于brew Node.js    #v0.10.33 npm        #2.1.6 包管理,类似于Python中的pip 下面正式讲述如何部署:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过Hexo在Github上搭建博客">
+<meta property="og:url" content="http://yoursite.com/2016/01/12/通过Hexo在Github上搭建博客-1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo简介 使用的软硬件  Mac Pro    #软件的安装基本都是基于brew Node.js    #v0.10.33 npm        #2.1.6 包管理,类似于Python中的pip 下面正式讲述如何部署:">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2016-01-27T09:17:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通过Hexo在Github上搭建博客">
+<meta name="twitter:description" content="Hexo简介 使用的软硬件  Mac Pro    #软件的安装基本都是基于brew Node.js    #v0.10.33 npm        #2.1.6 包管理,类似于Python中的pip 下面正式讲述如何部署:">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide',
+    motion: true
+  };
+</script>
+
+  <title> 通过Hexo在Github上搭建博客 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                通过Hexo在Github上搭建博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            Posted on
+            <time itemprop="dateCreated" datetime="2016-01-12T20:57:58+08:00" content="2016-01-12">
+              2016-01-12
+            </time>
+          </span>
+          <span class="post-time">
+            | 修改于
+            <time itemprop="dateCreated" datetime="2016-01-27T17:17:37+08:00" content="2016-01-27">
+              2016-01-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="Hexo简介"><a href="#Hexo简介" class="headerlink" title="Hexo简介"></a>Hexo简介</h2><hr>
+<pre><code>使用的软硬件
+
+Mac Pro    #软件的安装基本都是基于brew
+Node.js    #v0.10.33
+npm        #2.1.6 包管理,类似于Python中的pip
+</code></pre><p>下面正式讲述如何部署:<br><a id="more"></a></p>
+<h2 id="1-Git安装和Github设置"><a href="#1-Git安装和Github设置" class="headerlink" title="1. Git安装和Github设置"></a>1. Git安装和Github设置</h2><p>使用Mac电脑可以直brew安装,</p>
+<pre><code>brew install git          #Mac电脑使用brew安装
+sudo apt-get install git  #Ubuntu系统使用这条命令安装
+</code></pre><p>使用Github Page搭建博客, 需要遵循一定的规则, 需要在github建立仓库,仓库名为Github用户.github.io, 更多详情请参考官方文档</p>
+<h2 id="2-Node-js安装"><a href="#2-Node-js安装" class="headerlink" title="2. Node.js安装"></a>2. Node.js安装</h2><p>mac电脑可以直接通过brew安装</p>
+<pre><code>#安装命令
+brew install node  #如果我没记错的话,最新版的node.js的包中已经集成了npm包管理工具
+
+使用以下命令验证是否安装成功
+node -v
+npm -v
+git --version
+</code></pre><p>Node.js的详细内容请参考Node.js学习笔记</p>
+<h2 id="3-Hexo安装与设置"><a href="#3-Hexo安装与设置" class="headerlink" title="3. Hexo安装与设置"></a>3. Hexo安装与设置</h2><p>Node, npm和Git都安装成功, 开始安装hexo,</p>
+<pre><code>npm install hexo -g  #-g表示全局安装, npm默认为当前项目安装
+</code></pre><p>Hexo使用命令:</p>
+<pre><code>hexo init &lt;folder&gt;  #执行init命令初始化hexo到你指定的目录
+hexo generate       #自动根据当前目录下文件,生成静态网页
+hexo server         #运行本地服务,
+</code></pre><p>浏览器输入<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>就可以看到效果。</p>
+<h2 id="4-添加博文"><a href="#4-添加博文" class="headerlink" title="4. 添加博文"></a>4. 添加博文</h2><pre><code>hexo new &quot;postName&quot;  #新建博文,其中postName是博文题目
+</code></pre><p>博文会自动生成在博客目录下source/_posts\postName.md</p>
+<pre><code>#文件自动生成格式:
+title: &quot;It Starts with iGaze: Visual Attention Driven Networkingwith Smart Glasses&quot;  #博文题目
+date: 2014-11-21 11:25:38      #生成时间
+tags: Paper                    #标签, 多个标签使用格式[Paper1, Paper2, Paper3,...]
+---
+</code></pre><p>如果不想博文在首页全部显示, 并能出现阅读全文按钮效果, 需要在你想在首页显示的部分下添加<!--more--></p>
+<pre><code>此处及以上的内容会在首页显示
+&lt;!--more--&gt;
+一下是在首页隐藏的部分
+</code></pre><h2 id="5-主题更改"><a href="#5-主题更改" class="headerlink" title="5. 主题更改"></a>5. 主题更改</h2><p>Hexo提供了官网的主题, 初始化hexo时也会自动生成一个主题, Hexo还支持个性定制主题, 可以根据自己的喜好对主题进行修改, 更多主题可以在官网中找到</p>
+<p>个性化博客的设置<br>在博客的根目录下对喜爱的主题进行主题进行克隆</p>
+<pre><code>git clone git@github.com:yunlzheng/hexo-themes.git themes/writing
+
+#在./_config.yml，修改主题为writing
+theme: writing
+
+#查看本地效果
+hexo g       #hexo generate简写
+hexo s       #hexo server简写
+</code></pre><h2 id="6-部署到Github"><a href="#6-部署到Github" class="headerlink" title="6. 部署到Github"></a>6. 部署到Github</h2><p>以上内容都是在本地进行查看, 现在将博客部署到github上<br>打开./_config.yml</p>
+<pre><code># Hexo Configuration
+## Docs: http://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: Snow Memory    #博客名
+subtitle: 雪忆, 如雪般单纯, 冷静思考.  #博客副标题
+description:          #网站描述, 用于爬虫抓取的关键词
+author: Andrew Liu    #作者名称
+email: Liu.bin.coder@gmail.com  #作者邮箱
+language: zh-CN       #网页编码,中文
+
+# URL
+## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/    child&apos; and root as &apos;/child/&apos;
+url: http://andrewliu.tk   #用于绑定域名, 其他的不需要配置
+root: /
+permalink: :year/:month/:day/:title/
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+permalink_defaults:
+
+# Directory
+source_dir: source  
+public_dir: public
+
+# Writing, 设置生成博文的默认格式,不修改
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+highlight:
+ enable: true
+ line_number: true
+  tab_replace:
+
+# Category &amp; Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Archives
+#Archives 默认值为2,修改为1,Archives页面就只会列出标题,而非全文
+## 2: Enable pagination
+## 1: Disable pagination
+## 0: Fully Disable
+archive: 1
+category: 1
+tag: 1
+
+# Server服务器设置, 不修改
+## Hexo uses Connect as a server
+## You can customize the logger format as defined in
+## http://www.senchalabs.org/connect/logger.html
+port: 4000
+server_ip: localhost
+logger: false
+logger_format: dev
+
+# Date / Time format 日期格式
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: MMM D YYYY
+time_format: H:mm:ss
+
+# Pagination 分页, 设置每页显示多少篇博文
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+# Disqus  disqus评论,  与多说类似, 国内一般使用多说
+disqus_shortname: 
+
+# Extensions
+## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
+## Themes: https://github.com/hexojs/hexo/wiki/Themes
+theme: yilia    #主题设置
+exclude_generator:
+
+# Deployment  站点部署到github要配置这里, 非常重要
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+  type: git    #部署类型, 本文使用git
+  repository: git@github.com:Andrew-liu/Andrew-liu.github.io.git  #部署的仓库的SSH
+  branch: master   #部署分支,一般使用master主分支
+plugins: 
+- hexo-generator-feed   #此插件用于RSS订阅, 以后有时间再介绍
+</code></pre><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>如果页面中出现中文，应以UTF-8无BOM编码格式，所以不要用win自带的记事本，而是用notepad++/sublime text这种支持编码转换的编辑器。</p>
+<p>由于google在天朝大陆被墙，进入themes\landscape\layout_partial，打开head.ejs，删掉第31行fonts.googleapis.com的链接。</p>
+<p>下载下来jquery-2.0.3.min.js，放到themes\landscape\source\js文件夹中。之后进入themes\landscape\layout_partial，打开after-footer.ejs，将第17行的路径替换为/js/jquery-2.0.3.min.js。</p>
+<p>在配置文件中设置号部署设置后,</p>
+<pre><code>npm install hexo-deployer-git --save
+hexo deploy  #进行部署
+
+Initialized empty Git repository in /Users/andrew_liu/Andrew-    liu.github.io/.deploy/.git/
+[master (root-commit) bb3079b] First commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 placeholder
+[info] Clearing .deploy folder...
+[info] Copying files from public folder...
+[master 6e24e8d] Site updated: 2014-11-21 11:16:23
+172 files changed, 34969 insertions(+)
+create mode 100644 2014/09/08/Hello-World/index.html
+...
+create mode 100644 &quot;tags/\345\277\203\350\267\257\346\234\255\350\256\260/    index.html&quot;
+To git@github.com:Andrew-liu/Andrew-liu.github.io.git
+ + 11237d0...6e24e8d master -&gt; master (forced update)
+Branch master set up to track remote branch master from git@github.com:Andrew-    liu/Andrew-liu.github.io.git.
+[info] Deploy done: github
+
+#表示部署成功
+</code></pre><p>可以使用Github用户名.github.io进行访问, 或者设置个性域名</p>
+<h2 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h2><pre><code>hexo new &quot;title&quot;
+</code></pre><p>会在post路径下生成title.md 打开编辑即可</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/19/2016年的计划/" rel="prev" title="2016年的计划">
+                2016年的计划 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="John Doe" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">John Doe</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">categories</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo简介"><span class="nav-number">1.</span> <span class="nav-text">Hexo简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Git安装和Github设置"><span class="nav-number">2.</span> <span class="nav-text">1. Git安装和Github设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Node-js安装"><span class="nav-number">3.</span> <span class="nav-text">2. Node.js安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Hexo安装与设置"><span class="nav-number">4.</span> <span class="nav-text">3. Hexo安装与设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-添加博文"><span class="nav-number">5.</span> <span class="nav-text">4. 添加博文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-主题更改"><span class="nav-number">6.</span> <span class="nav-text">5. 主题更改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-部署到Github"><span class="nav-number">7.</span> <span class="nav-text">6. 部署到Github</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">7.1.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布文章"><span class="nav-number">8.</span> <span class="nav-text">发布文章</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
